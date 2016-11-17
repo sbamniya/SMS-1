@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>Admin | Society</title>
+        <link href="admin/js/dataTable/css/jquery.dataTables.min.css" rel="stylesheet" />
+        <!-- Bootstrap Core CSS -->
+	    <link href="admin/admin-panel/css/bootstrap.min.css" rel="stylesheet">
+	    <!-- Custom CSS -->
+	    <link href="admin/admin-panel/css/sb-admin.css" rel="stylesheet">
+	    <!-- Morris Charts CSS -->
+	    <link href="admin/admin-panel/css/plugins/morris.css" rel="stylesheet">
+	    <!-- Custom Fonts -->
+	    <link href="admin/admin-panel/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	    <link href="admin/admin-panel/css/style.css" rel="stylesheet">
+	    <link rel="stylesheet" href="front/assets/css/main.css" />
+	    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+	   
+	    <!-- Add google fonts -->
+	    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
+	    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bitter" />
+	    <script src="admin/js/jquery-latest.js"></script>
+    </head>
+    <body>
+    	<div id="wrapper">
+	    	<ng-view>
+	    		
+	    	</ng-view>
+    	</div>
+    <!-- /#wrapper -->
+    
+
+		
+		<script src="admin/js/angular.min.js"></script>
+		<script src="admin/js/angular-route.js"></script>
+		<script src="admin/js/dataTable/js/jquery.dataTables.js"></script>
+		<script src="admin/js/dataTable/js/angular-datatables.js"></script>
+		<script src="admin/js/ui-bootstrap-tpls-2.1.4.min.js"></script>
+
+		
+
+		<script src="https://angular-file-upload.appspot.com/js/ng-file-upload-shim.js"></script>
+		<script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
+
+		<script type="text/javascript" src="admin/js/ng-img-crop/unminified/ng-img-crop.js?1"></script>
+
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+	    <script src="admin/admin-panel/js/bootstrap.min.js"></script>
+		
+		<script src="admin/js/controllers/app.js"></script>
+		<script src="admin/js/controllers/login.js"></script>
+
+		<script src="admin/js/controllers/add-society.js"></script>
+		<script src="admin/js/controllers/society-list.js"></script>
+		<script src="admin/js/controllers/block-list.js"></script>
+		<script src="admin/js/controllers/managers.js"></script>
+		
+		<script src="admin/js/controllers/blocks.js"></script>
+		<script src="admin/js/controllers/resident-list.js"></script>
+		<script src="admin/js/controllers/society-login.js"></script>
+		<script src="admin/js/controllers/society-dashboard.js"></script>
+
+		<script src="admin/js/controllers/front-index.js"></script>
+		<script src="admin/js/controllers/front-society.js"></script>
+		<script src="admin/js/controllers/front-block.js"></script>
+		<!-- Add Directives -->
+		<script src="admin/js/directives/header.js"></script>
+		<script src="admin/js/directives/footer.js"></script>
+		
+		<!-- Initializing App -->
+		<script>
+			angular.bootstrap(document,['socialApp']);
+		</script>
+ 	</body>
+</html>
