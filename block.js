@@ -138,10 +138,10 @@ exports.getSingleBlock= function(pool,slug){
     var id = req.body.id;
     res.setHeader('Content-Type', 'application/json');
     var result = {};
-    var query = "select * from `block_master` where id="+id;
+    var query = "select b.*, sm.general_img as logo from `block_master` b right JOIN society_master sm on sm.id=b.parent_id where b.id="+id;
       pool.query(query, function(err, rows, fields){
           if(err){
-              console.log('error');
+              console.log(err);
           }else{
                result.success = rows[0];
                res.send(JSON.stringify(result));

@@ -3,7 +3,7 @@
 		<h4>Select Block</h4>
 		<p>Please select block to login</p>
 		<div class="form-group">
-			<select class="form-control" ng-init="block_id=''" ng-model="block_id">
+			<select class="form-control select-block" ng-init="block_id=''" ng-model="block_id">
 				<option value="">Select Block</option>
 				<option ng-repeat="block in blocks" value="{{ block.id }}">{{block.block_name}} - {{ block.society_name }}</option>
 			</select>

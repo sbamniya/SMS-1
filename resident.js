@@ -318,12 +318,13 @@ exports.updatePassword=  function(crypto,pool){
           var pageSize = length != null ? parseInt(length) : 0;
           var skip = start != null ? parseInt(start) : 0;
           var recordsTotal = 0;
+          var block_id = req.query.id;
 
           res.setHeader('Content-Type', 'application/json');
           var result = {};
-          var query = "select * from  `residents`";
+          var query = "select r.*, fm.flat_number from  `residents` r INNER join flat_master fm on fm.id=r.flat_id where fm.block_id = '"+block_id+"'";
           if(search_key!=''){
-            query +=' WHERE first_name like "%'+search_key+'%" or last_name like  "%'+search_key+'%" or email like  "%'+search_key+'%"';
+            query +=' and(r.first_name like "%'+search_key+'%" or r.last_name like  "%'+search_key+'%" or r.email like  "%'+search_key+'%" or r.id like  "%'+search_key+'%" or fm.flat_number like  "%'+search_key+'%")';
           }
 
           query += " order by id desc";
@@ -350,40 +351,18 @@ exports.updatePassword=  function(crypto,pool){
 
      exports.getresidentInfo= function(pool){
         return function(req,res){  
-          var draw = req.query.draw;
-          var start = req.query.start;
-          var length = req.query.length;
-          var search_key = req.query.search.value;
-          var end = parseInt(start) + parseInt(length);
-
-          var pageSize = length != null ? parseInt(length) : 0;
-          var skip = start != null ? parseInt(start) : 0;
-          var recordsTotal = 0;
-
+              var residentID = req.query.id; 
               res.setHeader('Content-Type', 'application/json');
               var result = {};
-              var query = "select rs.first_name,rs.last_name,rs.user_name,rs.ownership,rs.email,rs.contact_no,fm.flat_number,fm.storey_number,fm.type_of_flat,fm.area,fm.location ,bm.name as block_name,bm.block_manager,sm.name as society_name,sm.society_manager from flat_master as fm inner join residents as rs on rs.flat_id=fm.id inner join block_master as bm on fm.block_id=bm.id inner join society_master as sm on bm.parent_id=sm.id";
-              if(search_key!=''){
-                query +=' WHERE first_name like "%'+search_key+'%" or last_name like  "%'+search_key+'%" or email like  "%'+search_key+'%"';
-              }
-
-              query += " order by id desc";
-                pool.query(query, function(err, rows, fields){
-                    if(err){
-                        console.log(err);
-                    }else{
-                        result.draw = draw;
-                        recordsTotal = rows.length;
-                        result.recordsTotal = recordsTotal;
-
-                        var resultData = []
-                        resultData.push(rows.slice(skip, parseInt(skip)+parseInt(pageSize)));
-
-                        result.recordsFiltered = recordsTotal;
-                        result.success = JSON.stringify(resultData[0]);
-                        res.send(JSON.stringify(result));
-                        return;
-                    }
+              var query = "select rs.*,fm.flat_number,fm.storey_number,fm.type_of_flat,fm.area,fm.location ,bm.name as block_name,bm.block_manager,sm.name as society_name,sm.society_manager from flat_master as fm inner join residents as rs on rs.flat_id=fm.id inner join block_master as bm on fm.block_id=bm.id inner join society_master as sm on bm.parent_id=sm.id where rs.id='"+residentID+"'";
+              pool.query(query, function(err, rows, fields){
+                  if(err){
+                      console.log(err);
+                  }else{
+                    result.success = JSON.stringify(rows[0]);
+                    res.send(JSON.stringify(result));
+                    return;
+                  }
                 });
               }
             };

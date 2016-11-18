@@ -31,6 +31,7 @@
     var block = require("./block");
     var societylogin = require("./societylogin");
     var flat = require("./flat");
+    var complaint = require("./complaint");
 
     var slugSociety = require("./slugSociety");
     var photoUpload = require("./photoUpload");
@@ -81,6 +82,12 @@
     app.get('/getresidentList', resident.getresidentList(pool));
     app.post('/addResident',resident.addResident(pool, randomstring,crypto, transporter));
     app.post('/getFlatResident', resident.getFlatResident(pool));
+    app.get('/getresidentInfo', resident.getresidentInfo(pool));
+
+    /*Complaints APIs*/
+    app.post('/addComplaint', complaint.addComplaint(pool)); 
+    app.post('/getcomplaintDetail', complaint.getcomplaintDetail(pool));
+    app.get('/getcomplaintList', complaint.getcomplaintList(pool));
 
     /*Admin login & other functionality*/
     app.post('/login', admin.login(crypto));

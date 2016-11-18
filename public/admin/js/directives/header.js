@@ -45,7 +45,8 @@ socialApp.directive('societyHeader', ['$compile','$http','$location','$routePara
                 scope.isUpdated = true;
 
                 var id = window.atob($routeParams.blockID);
-
+                scope.manageDetail = window.localStorage.getItem('manageDetail');
+                scope.userDetail = JSON.parse(window.localStorage.getItem('userDetails'));
                 $http.get("/authentication/societyManager").success(function(response,status,headers,config){
                      if(response.status =='success'){
 
@@ -62,10 +63,12 @@ socialApp.directive('societyHeader', ['$compile','$http','$location','$routePara
                      }
                 });
                 $http.post('/getSingleBlock', {id: id}).success(function(response){
+
                     if(response.success){
 
                         scope.parent_id = window.btoa(response.success.parent_id);
                         scope.id = window.btoa(response.success.id);
+                        scope.societyLogo = response.success.logo;
                         /*if (response.success.is_updated==1) {
                             scope.isUpdated = false;
                         }*/
@@ -88,6 +91,8 @@ socialApp.directive('societyHeader', ['$compile','$http','$location','$routePara
                 scope.logOut = function() {
 
                         $http.get("/logout", {logout: 'societyManager'}).success(function(response,status,headers,config){
+                            window.localStorage.removeItem('manageDetail');
+                            window.localStorage.removeItem('userDetails');
                             $location.path("/society-manager-login");
                      }); 
                 };
@@ -127,43 +132,21 @@ socialApp.directive('residentheader', ['$compile','$http','$location','$routePar
         templateUrl: 'resident/html/header.html',
         transclude:true,
         link: function(scope, element, attrs) {
-                scope.headerOption = false;
-                /*scope.isSocietyManager = false;
                 scope.activetab = $route.current.activetab;
-                scope.isUpdated = true;
-
-                var id = window.atob($routeParams.blockID);
-
-                $http.get("/authentication/societyManager").success(function(response,status,headers,config){
+                scope.userDetail = JSON.parse(window.localStorage.getItem('userDetails'));
+                if (scope.userDetail.first_name=='' && scope.userDetail.last_name=='') {
+                    scope.userDetail.fullName = scope.userDetail.email;
+                }else{
+                    scope.userDetail.fullName = scope.userDetail.first_name+' '+scope.userDetail.last_name;
+                }
+                
+                $http.get("/authentication/Resident").success(function(response,status,headers,config){
                      if(response.status =='success'){
 
                      }else{
-                        $location.path("/society-manager-login");
+                        $location.path("/resident-login");
                      }
                 });
-                
-                $http.post("/checkForSocietyManager").success(function(response,status,headers,config){
-                     if(response.is_societymanager ==1){
-                        scope.isSocietyManager = true;
-                     }else{
-                        
-                     }
-                });
-                $http.post('/getSingleBlock', {id: id}).success(function(response){
-                    if(response.success){
-
-                        scope.parent_id = window.btoa(response.success.parent_id);
-                        scope.id = window.btoa(response.success.id);
-                        /*if (response.success.is_updated==1) {
-                            scope.isUpdated = false;
-                        }*/
-
-                   /* }else{
-
-                        $location.path('/404');
-
-                    }
-                });*/
                 var i = 1;
                 scope.openModel = function(){
                     if (i%2==1) {
@@ -176,6 +159,7 @@ socialApp.directive('residentheader', ['$compile','$http','$location','$routePar
                 scope.logOut = function() {
 
                         $http.get("/logout", {logout: 'resident'}).success(function(response,status,headers,config){
+                            window.localStorage.removeItem('userDetails');
                             $location.path("/resident-login");
                      }); 
                 };

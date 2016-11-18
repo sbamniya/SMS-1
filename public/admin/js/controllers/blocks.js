@@ -116,8 +116,9 @@ socialApp.controller('selectBlock',['$scope', '$http', '$location', '$compile', 
 	        	}
 	        });
 	        $scope.goToDashboard = function(){
-	        	
-	        	$location.path('/society-dashboard/'+window.btoa($scope.block_id));
+	        	var blockName = angular.element('.select-block option[value="'+$scope.block_id+'"]').text();
+	        	window.localStorage.setItem('manageDetail', blockName);
+	           	$location.path('/society-dashboard/'+window.btoa($scope.block_id));
 	        }
 }]);
 

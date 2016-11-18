@@ -88,6 +88,22 @@ socialApp.config(function($routeProvider){
         templateUrl : 'society/html/resident-list.html',
         controller: 'residentList',
         activetab: 'residentList'
+    }).when('/resident-info/:blockID/:residentID', {
+        templateUrl : 'society/html/resident-info.html',
+        controller: 'residentInfo',
+        activetab: 'residentList'
+    }).when('/pending-complaint-list/:blockID', {
+        templateUrl : 'society/html/complaint-list.html',
+        controller: 'pendingComplaintList',
+        activetab: 'Complaints'
+    }).when('/underS-complaint-list/:blockID', {
+        templateUrl : 'society/html/complaint-list.html',
+        controller: 'usComplaintList',
+        activetab: 'Complaints'
+    }).when('/resolved-complaint-list/:blockID', {
+        templateUrl : 'society/html/complaint-list.html',
+        controller: 'resolvedComplaintList',
+        activetab: 'Complaints'
     });
 
     /*Routes for Front*/
@@ -119,8 +135,19 @@ socialApp.config(function($routeProvider){
         templateUrl : 'resident/html/dashboard.html',
         controller: 'residentLogin',
         activetab: 'residentDashboard'
+    }).when('/resident-complaint-log', {
+        templateUrl : 'resident/html/complaint-log.html',
+        controller: 'logComplaint',
+        activetab: 'Complaints'
+    }).when('/full-complaint-form/:complaintID', {
+        templateUrl : 'resident/html/full-complaint-form.html',
+        controller: 'fullComplaintForm',
+        activetab: 'Complaints'
+    }).when('/complaint-list', {
+        templateUrl : 'resident/html/complaint-list.html',
+        controller: 'complaintList',
+        activetab: 'Complaints'
     });
-
     /*Routes for 404*/
     $routeProvider.when('/404', {
         templateUrl : 'front/html/404.html',

@@ -217,3 +217,33 @@ table.dataTable tbody tr.odd:hover {
     margin-bottom: 0;
     border-bottom: 1px dotted #b1a5a5;
 }
+.society-logo-container img {
+    height: 50px;
+    border-radius: 50%;
+    margin: 0% 0px 0% 5px;
+    float: left;
+}
+.printablePart {
+    margin-left: -27%;
+    width: 127% !important;
+}
+.Complaint-Form-Header{
+    text-align: center;
+    text-decoration: underline;
+}
+.Complaint-Form-Value {
+    width: 35%;
+    float: left;
+    font-size: 10px;
+    font-weight: 100;
+}
+.Complaint-Form-Label {
+    width: 65%;
+    float: left;
+    font-size: 10px;
+    color: #000;
+    font-weight: 500;
+}
+#entry-grid_length {
+    display: none;
+}

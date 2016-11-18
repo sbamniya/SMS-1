@@ -22,6 +22,7 @@ socialApp.controller('societyLogin',['$scope', '$http', '$location', '$compile',
 		            }
 		            else
 		            {
+                        window.localStorage.setItem('userDetails', JSON.stringify(response.success));
 		            	$location.path("/select-block");
 		            }
         	}); 

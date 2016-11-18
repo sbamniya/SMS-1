@@ -7,6 +7,7 @@ socialApp.controller('login',['$scope', '$http', '$location', '$compile', functi
 		$scope.loginAction = function(){
 			
 			$http.post("/login", $scope.admin).success(function(response,status,headers,config){
+
 		            if (response.error) 
 		            {
 		            	$scope.noError = false;	
@@ -103,9 +104,10 @@ socialApp.controller('residentLogin', ['$scope','$http','$location', function($s
         $scope.titleContent = " Enter Your Username and Password to log on:";
         $scope.userPlaceholder = "Username...";
         $scope.noError = true;
-        $http.get("/authentication/resident").success(function(response,status,headers,config){
+        $http.get("/authentication/Resident").success(function(response,status,headers,config){
+
              if(response.status =='success'){
-                $location.path("/select-block");
+                $location.path("/resident-dashboard");
              }else{
                 
              }
@@ -113,6 +115,7 @@ socialApp.controller('residentLogin', ['$scope','$http','$location', function($s
         $scope.loginAction = function(){
             
             $http.post("/resident-login", $scope.user).success(function(response,status,headers,config){
+
                     if (response.error) 
                     {
                         $scope.noError = false; 
@@ -120,6 +123,8 @@ socialApp.controller('residentLogin', ['$scope','$http','$location', function($s
                     }
                     else
                     {
+                        
+                        window.localStorage.setItem('userDetails', JSON.stringify(response.success));
                         $location.path("/resident-dashboard");
                     }
             }); 

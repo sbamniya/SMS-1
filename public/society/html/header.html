@@ -9,15 +9,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#/society-dashboard/{{id}}">Manager</a>
+                <span class="society-logo-container">
+                    <img ng-src="uploads/{{societyLogo}}">
+                </span>
+                <a class="navbar-brand" href="#/society-dashboard/{{id}}">Welcome {{userDetail.manager_name}} !</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li>
+                    <a href="javascript:void(0)">You Are Here: {{manageDetail}}</a>
+                </li>
+                <li>
                     <a href="#/select-block">Switch Block</a>
                 </li>
                 <li class="dropdown">
-                    <a href="javascript:void(0)" ng-click="openModel()"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="javascript:void(0)" ng-click="openModel()"><i class="fa fa-user"></i> {{userDetail.manager_name}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <!-- <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -45,20 +51,33 @@
                         <a href="#/manage-society/{{id}}/{{parent_id}}" ng-class="{active: activetab == 'manageSociety'}"><i class="fa fa-globe"></i> Manage Society</a>
                     </li>
                     <li>
-                        <a href="#/resident-list/{{id}}" ng-class="{active: activetab == 'residentList'}"><i class="fa fa-users"></i> Residents</a>
-                    </li>
-                    <!-- <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-globe"></i> Society <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:void(0)" data-toggle="collapse" data-target="#demo" ng-class="{active: activetab == 'residentList'}"><i class="fa fa-users"></i> Residents <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                               <a href="#/add-society"> <i class="fa fa-circle-o"></i> Add</a>
+                               <a href="#/resident-list/{{id}}"> <i class="fa fa-circle-o"></i> All</a>
                             </li>
                             <li>
-                                <a href="#/society-list"><i class="fa fa-circle-o"></i> List</a>
+                                <a href="#/resident-list/{{id}}"><i class="fa fa-circle-o"></i> Owners</a>
+                            </li>
+                            <li>
+                                <a href="#/resident-list/{{id}}"><i class="fa fa-circle-o"></i> Tenants</a>
                             </li>
                         </ul>
                     </li>
-                    -->
+                    <li>
+                        <a href="javascript:void(0);" ng-class="{active: activetab == 'Complaints'}" data-toggle="collapse" data-target="#demo1"><i class="fa fa-file"></i>Complaints <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo1" class="collapse">
+                            <li>
+                               <a href="#/pending-complaint-list/{{id}}"> <i class="fa fa-circle-o"></i>Pending</a>
+                            </li>
+                            <li>
+                                <a href="#/underS-complaint-list/{{id}}"><i class="fa fa-circle-o"></i>Under Surveillance</a>
+                            </li>
+                            <li>
+                                <a href="#/resolved-complaint-list/{{id}}"><i class="fa fa-circle-o"></i>Resolved</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
